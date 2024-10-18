@@ -1,0 +1,37 @@
+<mat-toolbar id="header" class="mat-elevation-z8">
+    <button *ngIf="userData.userType=='admin'" (click)="toggleDrawer()" mat-icon-button color="accent">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="d-flex align-items-center justify-content-between w-100">
+      <div class="service-icon" style="color: white; cursor: pointer;" (click)="navigateToHomePage()">
+        <img src="https://cdn-icons-png.flaticon.com/512/7612/7612656.png" alt="Logo"> 
+      </div>
+      <!-- <span class="text-light">Eber Ride</span> -->
+  
+      <div >
+  
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="large-button lg:mx-3 mx-1">
+            <span class="material-icons icon">account_circle</span>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button *ngIf="userData.userType=='user'" mat-menu-item (click)="openDialog(user)" >
+              <mat-icon>credit_card</mat-icon> Add Card
+            </button>
+            <button *ngIf="userData.userType==='user'" mat-menu-item (click)="navigateToMyRides()">
+              <mat-icon>local_shipping</mat-icon>
+              <span>My Rides</span>
+            </button>
+            <button *ngIf="userData.userType==='driver'" mat-menu-item (click)="navigateToMyRidesDriver()">
+              <mat-icon>local_shipping</mat-icon>
+              <span>My Rides</span>
+            </button>
+            <button mat-menu-item (click)="onLogout()">
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+      </div>
+    </div>
+  </mat-toolbar>
+  
+  

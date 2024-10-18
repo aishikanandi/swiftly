@@ -1,0 +1,148 @@
+<div class="analytics-dashboard" *ngIf="userData.userType === 'admin'">
+  <!-- Ratings Horizontal Bar Graph -->
+  <div class="chart-container">
+    <h3>Ratings</h3>
+    <apx-chart 
+      [series]="ratingsData"
+      [chart]="ratingsChartOptions"
+      [xaxis]="ratingsChartOptions.xaxis"
+      [dataLabels]="ratingsChartOptions.dataLabels">
+    </apx-chart>
+  </div>
+
+  <!-- Average Ride Time -->
+  <div class="chart-container">
+    <h3>Average Ride Time</h3>
+    <apx-chart [chart]="rideTimeChartOptions" [series]="rideTimeData"></apx-chart>
+  </div>
+
+  <!-- Number of Cancellations -->
+  <div class="chart-container">
+    <h3>Cancellations</h3>
+    <apx-chart [chart]="cancellationChartOptions" [series]="cancellationData" [xaxis]="cancellationXaxisOptions"></apx-chart>
+  </div>
+
+  <!-- Number of Users Without Rides -->
+  <div class="chart-container">
+    <h3>Users Without Rides</h3>
+    <apx-chart [chart]="noRidesChartOptions" [series]="noRidesData" [xaxis]="noRidesXaxisOptions"></apx-chart>
+  </div>
+
+  <!-- Number of Ongoing Rides -->
+  <div class="chart-container">
+    <h3>Ongoing Rides</h3>
+    <apx-chart [chart]="ongoingRidesChartOptions" [series]="ongoingRidesData" [xaxis]="ongoingRidesXaxisOptions"></apx-chart>
+  </div>
+</div>
+  
+  
+  
+
+<section class="hero" *ngIf="userData.userType!=='admin'">
+  <button *ngIf="userData.userType=='user'" (click)="navigateToCreateRide()">Book Now</button>
+  <button *ngIf="userData.userType=='driver'"(click)="navigateToRunningRequest()">My Rides</button>
+</section>
+
+<section class="map-container" *ngIf="userData.userType!=='admin'">
+<h2 class="map-heading">Our Services</h2>
+<div class="cards">
+  <div class="card">
+    <div class="card-image">
+      <img src="https://png.pngtree.com/png-vector/20240917/ourmid/pngtree-a-3d-red-sport-bike-motorcycle-black-background-png-image_13861972.png" alt="Motorbike" />
+    </div>
+    <div class="card-content">
+      <h4>Motorbike</h4>
+      <p>Suitable for light-weight and small goods</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-image">
+      <img src="https://i.postimg.cc/mDBVw7p5/262-2622734-loading-tempo-on-hire-tata-ace-cng-removebg-preview.png" alt="Van" />
+    </div>
+    <div class="card-content">
+      <h4>Van</h4>
+      <p>Suitable for medium-weight goods</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-image">
+      <img src="https://png.pngtree.com/png-vector/20240124/ourmid/pngtree-3d-free-cargo-delivery-truck-png-image_11481872.png" alt="Truck" />
+    </div>
+    <div class="card-content">
+      <h4>Truck</h4>
+      <p>Suitable for heavy goods</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-image">
+      <img src="https://i.postimg.cc/zDnHN9BK/272-2725011-tractor-trailer-png-transparent-png-removebg-preview.png" alt="Trailers" />
+    </div>
+    <div class="card-content">
+      <h4>Trailers</h4>
+      <p>Efficient for voluminuous goods and long distances</p>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<section class="customers" *ngIf="userData.userType!=='admin'">
+  <h2 class="map-heading">Testimony</h2>
+  <div class="feedback">
+    <div class="feedback-item">
+      <div class="service-icon">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/019/859/726/small/yellow-five-stars-quality-rating-icons-5-stars-icon-five-star-sign-rating-symbol-transparent-background-illustration-png.png" alt="">
+      </div>
+      <p>"Great service, on-time and smooth loading!"</p>
+      <p>- Sara Ali Khan</p>
+    </div>
+    <div class="feedback-item">
+      <div class="service-icon">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/019/859/726/small/yellow-five-stars-quality-rating-icons-5-stars-icon-five-star-sign-rating-symbol-transparent-background-illustration-png.png" alt="">
+      </div>
+      <p>"Easy booking process and safely handled the goods."</p>
+      <p>- Ayush sharma</p>
+    </div>
+    <div class="feedback-item">
+      <div class="service-icon">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/019/859/726/small/yellow-five-stars-quality-rating-icons-5-stars-icon-five-star-sign-rating-symbol-transparent-background-illustration-png.png" alt="">
+      </div>
+      <p>"Best transport booking app I've used so far!"</p>
+      <p>- Sunaina Vijay</p>
+    </div>
+  </div>
+</section>
+
+<section class="services" *ngIf="userData.userType!=='admin'">
+  <h3 class="map-heading">Best in-class features</h3>
+  <div class="service-container">
+    <div class="service">
+      <div class="service-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/7612/7612656.png" alt="Logo"> 
+      </div>
+      <h4 class="service-bold">Transport Goods</h4>
+      <p>Quick transport booking and live tracking</p>
+    </div>
+    <div class="service">
+      <div class="service-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/45/45091.png" alt="Logo"> 
+      </div>
+      <h4 class="service-bold">Secure Payments</h4>
+      <p>Flexible and authenticated payment methods</p>
+    </div>
+    <div class="service">
+      <div class="service-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/1307/1307960.png" alt="Logo"> 
+      </div>
+      <h4 class="service-bold">Pan-India connectivity</h4>
+      <p>Transport throughout the country</p>
+    </div>
+  </div>
+</section>
+
+<section class="map-container" *ngIf="userData.userType!=='admin'">
+  <h2 class="map-heading" *ngIf="userData.userType=='user'">We are available at your location!</h2>
+  <h2 class="map-heading" *ngIf="userData.userType=='driver'">Your current location!</h2>
+  <h2 class="map-heading" *ngIf="userData.userType=='admin'">Hey admin, we serve at your location!</h2>
+  <div id="map" class="map"></div>
+</section>
