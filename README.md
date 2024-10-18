@@ -1,3 +1,5 @@
+## Swiftly - On-Demand Logistics Platform
+Swiftly is a highly scalable logistics platform that connects users needing transportation services for goods with a network of drivers. Designed to handle large-scale operations, Swiftly enables users to book vehicles, track real-time driver locations, receive pricing estimates, and manage logistics operations efficiently. Whether you’re a user, driver, or admin, Swiftly provides seamless experiences tailored to your specific needs.
 
 ## Technologies Used
 
@@ -37,14 +39,3 @@ Contributions are welcome! If you would like to contribute to the project, pleas
 
 This project is licensed under the [MIT License](LICENSE).
 
-## Acknowledgments
-
-- The developers of the MEAN stack and other open-source technologies used in this project.
-- Any additional acknowledgments or credits.
-
-Feel free to update the sections as per your project requirements. Good luck with your Eber Ride project!
-
-## Deployment Links
-
-- The Backend is Hosted in AWS Elastic Beanstalk http://eberride-env.eba-83w3w3ik.ap-south-1.elasticbeanstalk.com/.
-- The Frontend is Hosted in Netlify https://eberride.netlify.app.
