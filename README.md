@@ -1,17 +1,3 @@
-# Eber Ride - Taxi Booking Web App
-
-## Description
-Eber Ride is a Taxi Booking Web App built using the MEAN stack technology (MongoDB, Express.js, Angular, and Node.js). This project aims to provide a convenient and efficient solution for users to book taxis online and for drivers to manage their bookings effectively.
-
-## Features
-
-- **User Registration and Authentication**: Users can create accounts and log in securely to access the booking functionality.
-- **Search and Book Taxis**: Users can search for available taxis based on their location, view details such as driver information, ratings, and choose to book the taxi that suits their needs.
-- **Real-time Tracking**: Once a booking is confirmed, users can track their taxi in real-time on a map, allowing them to know the driver's location and estimated time of arrival.
-- **Multiple Payment Options**: The application supports multiple payment methods, providing users with flexibility and convenience.
-- **Driver Management**: Drivers can create profiles, manage their availability, view assigned bookings, and update their status.
-- **Rating and Feedback**: Users can rate their ride experience and provide feedback, helping to maintain a quality service.
-- **Admin Dashboard**: An admin dashboard is available to manage users, drivers, bookings, and monitor system statistics.
 
 ## Technologies Used
 
@@ -24,9 +10,9 @@ Eber Ride is a Taxi Booking Web App built using the MEAN stack technology (Mongo
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your-username/eber-ride.git`
-2. Navigate to the project directory: `cd eber-ride`
-3. Install the required dependencies:
+1. Clone the repository
+2. Navigate to the project root directory
+3. Install the required dependencies
    - Backend: `cd backend && npm install`
    - Frontend: `cd frontend && npm install`
 4. Configure the application:
