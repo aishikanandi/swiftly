@@ -9,7 +9,7 @@
     "dev": "nodemon app.js",
     "vercel-build": "echo hello"
   },
-  "author": "Prashant Rai",
+  "author": "Aishika Nandi",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
