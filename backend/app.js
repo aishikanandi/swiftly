@@ -68,20 +68,14 @@ app.use(createRideRoutes);
 app.use(confirmRideRouter);
 app.use(ridehistoryRouter)
 app.use(credentials)
-app.use(feedbackRoutes)
 
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/frontend/index.html'));
+app.get("/", async (req, res) => {
+  res.json({
+    Message: "Hello Aishika, API is Working Fine!",
+    "Login Data": `http:localhost:4000/logindata`,
+    "Vehicle Data": `http:localhost:4000/vehicledata`,
+  });
 });
-
-// app.get("/", async (req, res) => {
-//   res.json({
-//     Message: "Hello Prashant, API is Working Fine!",
-//     "Login Data": `http:localhost:4000/logindata`,
-//     "Vehicle Data": `http:localhost:4000/vehicledata`,
-//   });
-// });
 
 initializeSocket(http)
 http.listen(PORT, () => {

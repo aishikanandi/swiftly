@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   onLogin() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
+      console.log(email, password);
   
       this._api.loginUser({ email, password }).subscribe({
         next: (res: any) => {

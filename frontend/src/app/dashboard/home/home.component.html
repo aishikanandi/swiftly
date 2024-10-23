@@ -1,42 +1,84 @@
-<div class="analytics-dashboard" *ngIf="userData.userType === 'admin'">
-  <!-- Ratings Horizontal Bar Graph -->
-  <div class="chart-container">
-    <h3>Ratings</h3>
-    <apx-chart 
-      [series]="ratingsData"
-      [chart]="ratingsChartOptions"
-      [xaxis]="ratingsChartOptions.xaxis"
-      [dataLabels]="ratingsChartOptions.dataLabels">
+<div class="charts-container" *ngIf="userData.userType==='admin'">
+  <div class="chart">
+    <h3>Ratings vs Time</h3>
+    <apx-chart
+      [series]="ratingsChartOptions.series"
+      [chart]="ratingsChartOptions.chart"
+      [dataLabels]="ratingsChartOptions.dataLabels"
+      [stroke]="ratingsChartOptions.stroke"
+      [title]="ratingsChartOptions.title"
+      [grid]="ratingsChartOptions.grid"
+      [xaxis]="ratingsChartOptions.xaxis">
     </apx-chart>
   </div>
 
-  <!-- Average Ride Time -->
-  <div class="chart-container">
-    <h3>Average Ride Time</h3>
-    <apx-chart [chart]="rideTimeChartOptions" [series]="rideTimeData"></apx-chart>
+  <div class="chart">
+    <h3>Average Ride Time vs Day</h3>
+    <apx-chart
+      [series]="averageRideTimeChartOptions.series"
+      [chart]="averageRideTimeChartOptions.chart"
+      [dataLabels]="averageRideTimeChartOptions.dataLabels"
+      [stroke]="averageRideTimeChartOptions.stroke"
+      [title]="averageRideTimeChartOptions.title"
+      [grid]="averageRideTimeChartOptions.grid"
+      [xaxis]="averageRideTimeChartOptions.xaxis">
+    </apx-chart>
   </div>
 
-  <!-- Number of Cancellations -->
-  <div class="chart-container">
+  <div class="chart">
+    <h3>Number of Registered Users</h3>
+    <apx-chart
+      [series]="registeredUsersChartOptions.series"
+      [chart]="registeredUsersChartOptions.chart"
+      [dataLabels]="registeredUsersChartOptions.dataLabels"
+      [stroke]="registeredUsersChartOptions.stroke"
+      [title]="registeredUsersChartOptions.title"
+      [grid]="registeredUsersChartOptions.grid"
+      [xaxis]="registeredUsersChartOptions.xaxis">
+    </apx-chart>
+  </div>
+
+  <div class="chart">
     <h3>Cancellations</h3>
-    <apx-chart [chart]="cancellationChartOptions" [series]="cancellationData" [xaxis]="cancellationXaxisOptions"></apx-chart>
+    <apx-chart
+      [series]="cancellationsChartOptions.series"
+      [chart]="cancellationsChartOptions.chart"
+      [dataLabels]="cancellationsChartOptions.dataLabels"
+      [stroke]="cancellationsChartOptions.stroke"
+      [title]="cancellationsChartOptions.title"
+      [grid]="cancellationsChartOptions.grid"
+      [xaxis]="cancellationsChartOptions.xaxis">
+    </apx-chart>
   </div>
 
-  <!-- Number of Users Without Rides -->
-  <div class="chart-container">
+  <div class="chart">
     <h3>Users Without Rides</h3>
-    <apx-chart [chart]="noRidesChartOptions" [series]="noRidesData" [xaxis]="noRidesXaxisOptions"></apx-chart>
+    <apx-chart
+      [series]="usersWithoutRidesChartOptions.series"
+      [chart]="usersWithoutRidesChartOptions.chart"
+      [dataLabels]="usersWithoutRidesChartOptions.dataLabels"
+      [stroke]="usersWithoutRidesChartOptions.stroke"
+      [title]="usersWithoutRidesChartOptions.title"
+      [grid]="usersWithoutRidesChartOptions.grid"
+      [xaxis]="usersWithoutRidesChartOptions.xaxis">
+    </apx-chart>
   </div>
 
-  <!-- Number of Ongoing Rides -->
-  <div class="chart-container">
-    <h3>Ongoing Rides</h3>
-    <apx-chart [chart]="ongoingRidesChartOptions" [series]="ongoingRidesData" [xaxis]="ongoingRidesXaxisOptions"></apx-chart>
+  <div class="chart">
+    <h3>Current Ongoing Rides</h3>
+    <apx-chart
+      [series]="ongoingRidesChartOptions.series"
+      [chart]="ongoingRidesChartOptions.chart"
+      [dataLabels]="ongoingRidesChartOptions.dataLabels"
+      [stroke]="ongoingRidesChartOptions.stroke"
+      [title]="ongoingRidesChartOptions.title"
+      [grid]="ongoingRidesChartOptions.grid"
+      [xaxis]="ongoingRidesChartOptions.xaxis">
+    </apx-chart>
   </div>
 </div>
-  
-  
-  
+
+
 
 <section class="hero" *ngIf="userData.userType!=='admin'">
   <button *ngIf="userData.userType=='user'" (click)="navigateToCreateRide()">Book Now</button>

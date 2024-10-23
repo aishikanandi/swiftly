@@ -1,65 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {
+  ChartComponent,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexXAxis,
+  ApexTitleSubtitle,
+  ApexDataLabels,
+  ApexGrid,
+  ApexStroke
+} from 'ng-apexcharts';
+
 declare var google: any;
+
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  dataLabels: ApexDataLabels;
+  grid: ApexGrid;
+  stroke: ApexStroke;
+  title: ApexTitleSubtitle;
+};
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  map: any;
-  directionsService: any;
-  directionsRenderer: any;
-  userData = JSON.parse(localStorage.getItem('userDetails')||'');
-  ratingsData = [{ name: 'Rating', data: [75, 60, 50, 90, 80] }];
-  ratingsChartOptions = {
-    chart: { type: 'bar', height: 350 },
-    xaxis: { categories: ['Very Bad', 'Bad', 'Neutral', 'Good', 'Very Good'] },
-    dataLabels: { enabled: true }
-  };
+export class HomeComponent implements OnInit {
+  userData = JSON.parse(localStorage.getItem('userDetails') || '');
+  
+  // Chart options for each graph
+  public ratingsChartOptions: Partial<ChartOptions>;
+  public averageRideTimeChartOptions: Partial<ChartOptions>;
+  public registeredUsersChartOptions: Partial<ChartOptions>;
+  public cancellationsChartOptions: Partial<ChartOptions>;
+  public usersWithoutRidesChartOptions: Partial<ChartOptions>;
+  public ongoingRidesChartOptions: Partial<ChartOptions>;
 
-  rideTimeData = [{ name: 'Average Ride Time', data: [45, 32, 25, 70] }];
-  rideTimeChartOptions = {
-    chart: { type: 'line', height: 350 },
-    dataLabels: { enabled: true }
-  };
-
-  barChartData = [{ name: 'Registered Users', data: [100, 200, 300] }];
-  barChartOptions = {
-    chart: { type: 'bar', height: 350 },
-    dataLabels: { enabled: true },
-    xaxis: { categories: ['Jan', 'Feb', 'Mar'] }
-  };
-
-  cancellationData = [{ name: 'Cancellations', data: [10, 20, 15] }];
-  cancellationChartOptions = {
-    chart: { type: 'bar', height: 350 },
-    dataLabels: { enabled: true },
-    xaxis: { categories: ['Jan', 'Feb', 'Mar'] }
-  };
-
-  noRidesData = [{ name: 'Users Without Rides', data: [50, 30, 20] }];
-  noRidesChartOptions = {
-    chart: { type: 'bar', height: 350 },
-    dataLabels: { enabled: true },
-    xaxis: { categories: ['Jan', 'Feb', 'Mar'] }
-  };
-
-  ongoingRidesData = [{ name: 'Ongoing Rides', data: [5, 10, 8] }];
-  ongoingRidesChartOptions = {
-    chart: { type: 'bar', height: 350 },
-    dataLabels: { enabled: true },
-    xaxis: { categories: ['Jan', 'Feb', 'Mar'] }
-  };
-
-
-  constructor(private router: Router){}
-
+  constructor(private router: Router) {
+    // Initialize the charts with sample data
+    this.ratingsChartOptions = this.getRatingsChartOptions();
+    this.averageRideTimeChartOptions = this.getAverageRideTimeChartOptions();
+    this.registeredUsersChartOptions = this.getRegisteredUsersChartOptions();
+    this.cancellationsChartOptions = this.getCancellationsChartOptions();
+    this.usersWithoutRidesChartOptions = this.getUsersWithoutRidesChartOptions();
+    this.ongoingRidesChartOptions = this.getOngoingRidesChartOptions();
+  }
 
   ngOnInit(): void {
     this.initMap();
-    
   }
 
   navigateToCreateRide() {
@@ -67,13 +58,215 @@ export class HomeComponent {
   }
 
   navigateToRunningRequest() {
-    this.router.navigate(['/app/runningrequest'] );
+    this.router.navigate(['/app/runningrequest']);
   }
 
+  // Methods to get chart options
+  private getRatingsChartOptions(): Partial<ChartOptions> {
+    return {
+      series: [
+        {
+          name: 'Ratings',
+          data: [4, 4.5, 5, 4.2, 4.8, 4.9, 5]
+        }
+      ],
+      chart: {
+        height: 350,
+        type: 'line',
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'smooth'
+      },
+      title: {
+        text: 'Ratings vs Time',
+        align: 'left'
+      },
+      xaxis: {
+        categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7']
+      },
+      grid: {
+        row: {
+          colors: ['#f3f3f3', 'transparent'],
+          opacity: 0.5
+        }
+      }
+    };
+  }
+
+  private getAverageRideTimeChartOptions(): Partial<ChartOptions> {
+    return {
+      series: [
+        {
+          name: 'Average Ride Time (min)',
+          data: [30, 25, 35, 20, 40, 30, 45]
+        }
+      ],
+      chart: {
+        height: 350,
+        type: 'bar',
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'smooth'
+      },
+      title: {
+        text: 'Average Ride Time vs Day',
+        align: 'left'
+      },
+      xaxis: {
+        categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      },
+      grid: {
+        row: {
+          colors: ['#f3f3f3', 'transparent'],
+          opacity: 0.5
+        }
+      }
+    };
+  }
+
+  private getRegisteredUsersChartOptions(): Partial<ChartOptions> {
+    return {
+      series: [
+        {
+          name: 'Registered Users',
+          data: [100, 120, 150, 200, 250, 300, 350]
+        }
+      ],
+      chart: {
+        height: 350,
+        type: 'line',
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'smooth'
+      },
+      title: {
+        text: 'Number of Registered Users',
+        align: 'left'
+      },
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
+      },
+      grid: {
+        row: {
+          colors: ['#f3f3f3', 'transparent'],
+          opacity: 0.5
+        }
+      }
+    };
+  }
+
+  private getCancellationsChartOptions(): Partial<ChartOptions> {
+    return {
+      series: [
+        {
+          name: 'Cancellations',
+          data: [5, 8, 4, 6, 2, 9, 3]
+        }
+      ],
+      chart: {
+        height: 350,
+        type: 'bar',
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'smooth'
+      },
+      title: {
+        text: 'Cancellations Over Time',
+        align: 'left'
+      },
+      xaxis: {
+        categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7']
+      },
+      grid: {
+        row: {
+          colors: ['#f3f3f3', 'transparent'],
+          opacity: 0.5
+        }
+      }
+    };
+  }
+
+  private getUsersWithoutRidesChartOptions(): Partial<ChartOptions> {
+    return {
+      series: [
+        {
+          name: 'Users Without Rides',
+          data: [10, 15, 20, 25, 30, 35, 40]
+        }
+      ],
+      chart: {
+        height: 350,
+        type: 'line',
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'smooth'
+      },
+      title: {
+        text: 'Users Without Rides',
+        align: 'left'
+      },
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
+      },
+      grid: {
+        row: {
+          colors: ['#f3f3f3', 'transparent'],
+          opacity: 0.5
+        }
+      }
+    };
+  }
+
+  private getOngoingRidesChartOptions(): Partial<ChartOptions> {
+    return {
+      series: [
+        {
+          name: 'Ongoing Rides',
+          data: [3, 2, 5, 4, 6, 7, 8]
+        }
+      ],
+      chart: {
+        height: 350,
+        type: 'bar',
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'smooth'
+      },
+      title: {
+        text: 'Current Ongoing Rides',
+        align: 'left'
+      },
+      xaxis: {
+        categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7']
+      },
+      grid: {
+        row: {
+          colors: ['#f3f3f3', 'transparent'],
+          opacity: 0.5
+        }
+      }
+    };
+  }
   initMap() {
-    // Check if the browser supports Geolocation
     if (navigator.geolocation) {
-      // Get the current position
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const userLocation = {
@@ -81,31 +274,29 @@ export class HomeComponent {
             lng: position.coords.longitude
           };
   
-          this.map = new google.maps.Map(
-            document.getElementById("map") as HTMLElement,
-            {
-              zoom: 12,
-              center: userLocation, 
-            }
-          );
+          const map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
+            zoom: 12,
+            center: userLocation,
+          });
   
-          const marker = new google.maps.Marker({
+          new google.maps.Marker({
             position: userLocation,
-            map: this.map,
-            title: "Your Current Location",
+            map: map,
+            title: 'Your Current Location',
             icon: {
-              url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png", 
+              url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
             },
           });
         },
         (error) => {
-          console.error("Error fetching the location: ", error);
-          alert("Error: Unable to fetch your location.");
+          console.error('Error fetching the location: ', error);
+          alert('Error: Unable to fetch your location.');
         }
       );
     } else {
-      alert("Geolocation is not supported by your browser.");
+      alert('Geolocation is not supported by your browser.');
     }
   }
-  
 }
+
+

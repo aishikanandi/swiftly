@@ -40,11 +40,6 @@ import { FeedbackComponent } from './shared/feedback/feedback.component';
     ToastrModule.forRoot(),
     DashboardModule,
     AuthModule,
-    // AgmDirectionModule,
-    // AgmCoreModule.forRoot({
-    //   apiKey: 'AIzaSyA8LneA4X4Ulwa3ui5w9CUtHmM0W4cz5H4',
-    //   libraries: ['places']
-    // })
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}, AuthService, NotificationsService],
   bootstrap: [AppComponent]

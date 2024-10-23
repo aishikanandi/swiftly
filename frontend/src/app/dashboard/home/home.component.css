@@ -412,28 +412,18 @@
 }
 
 }
-
-.analytics-dashboard {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  padding: 20px;
+.charts-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Spacing between charts */
 }
 
-.cardss {
-  background-color: #fff;
-  padding: 20px;
+.chart {
+  flex: 1 1 30%; /* Responsive sizing */
+  min-width: 300px; /* Minimum width for each chart */
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  padding: 10px;
+  background-color: #fff; /* Background color for charts */
 }
 
-.average-time {
-  font-size: 24px;
-  font-weight: bold;
-  color: #2d3e50;
-}
-
-canvas {
-  max-width: 100%;
-}
